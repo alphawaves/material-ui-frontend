@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar'
+import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
+import SearchResult from './components/SearchResult'
+import Dashboard from './components/Dashboard'
+import DetailedDocument from './components/detailedDocument'
+import DetailedDocumentMaterial from './components/DetailedDocumentMaterial'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 
 class App extends Component {
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        primary: red
+      }
+    });
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <React.Fragment>
+          <Route path="/" component={NavBar} />
+            <Switch>
+              <Route path="/login" component={LoginForm} />
+              <Route path="/register" component={RegisterForm} />
+              <Route path="/searchResult" component={SearchResult} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/detailed" component={DetailedDocumentMaterial} />
+            </Switch>
+          </React.Fragment>
+        </Router>
+      </MuiThemeProvider>
     );
   }
 }
