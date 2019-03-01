@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { TextField } from '@material-ui/core';
+import { AccountCircleOutline } from 'mdi-material-ui'
 
 const styles = theme => ({
   main: {
@@ -34,7 +35,9 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
+    height: '50px',
+    width: '50px'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -75,10 +78,10 @@ class SignIn extends React.Component {
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AccountCircleOutline />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign In
         </Typography>
         <form className={classes.form}>
           <TextField

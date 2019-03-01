@@ -13,6 +13,10 @@ import Icon from '@material-ui/core/Icon'
 import Info from '@material-ui/icons/Info'
 import Description from '@material-ui/icons/Description'
 import Typography from '@material-ui/core/Typography'
+import { Download, ContentCopy, FileDocument } from 'mdi-material-ui'
+import EntityDetails from './EntityDetails'
+import IssueForm from './IssueForm'
+
 
 const styles = theme => ({
     stylizedbackground: {
@@ -54,20 +58,26 @@ const styles = theme => ({
         marginLeft:'15px'
     },
     button: {
-        marginRight: '20px'
+        marginRight: theme.spacing.unit * 3
     },
     cardcontent: {
         border: `4px solid ${theme.palette.primary.light}`,
         borderTop: `1px solid ${theme.palette.primary.light}`,
+    },
+    buttonicon: {
+        marginRight: theme.spacing.unit * 1
     }
-
 })
 
 class DetailedDocumentMaterial extends Component {
 
-   handleClick() {
-       console.log("Download")
-   } 
+  state = {
+    status:'unissued'
+  }
+
+  handleClick() {
+    console.log("Download")
+  } 
   render() {
     const { classes } = this.props
     return (
@@ -75,16 +85,19 @@ class DetailedDocumentMaterial extends Component {
         <CardHeader
             avatar={
                 <Avatar aria-label="Document" className={classes.avatar}>
-
-                    {/* <Icon className={classNames('fa fa-file-alt')} /> */}
-                    <Description />
-                    
+                    <FileDocument />          
                 </Avatar>
             }
             action={
                 <div>
-                <Button className={classes.button} size="medium" color="primary" variant="contained" onClick={() => this.handleClick()}><Icon color="disabled" className={classNames('fa fa-file-alt')} />Download</Button>
-                <Button className={classes.button} size="medium" color="primary" variant="outlined">Copy Hash</Button>
+                <Button className={classes.button} size="medium" color="primary" variant="contained" onClick={() => this.handleClick()}>
+                    <Download className={classes.buttonicon} />
+                    Download
+                </Button>
+                <Button className={classes.button} size="medium" color="primary" variant="outlined">
+                    <ContentCopy className={classes.buttonicon} />
+                    Copy Hash
+                </Button>
                 </div>
             }
             title="Document title"
@@ -114,7 +127,7 @@ class DetailedDocumentMaterial extends Component {
                                 <Typography variant="p">Lorem ipsum dolor sit amet, consectetur adipiscing
                                 elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo <i className="fas fa-file-alt">file goes here</i>consequat. Duis aute irure dolor in reprehenderit in
+                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                                 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                                 occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                                 anim id est laborum.
@@ -122,9 +135,10 @@ class DetailedDocumentMaterial extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Grid item><EntityDetails type="Issuer" /></Grid>
                     <Grid item>
-                        <EntityCard type="Issuer" />
-                        <EntityCard type="Receiver" />                        
+                     {this.state.status === "issued" ? (<EntityDetails type="Receiver" />)
+                        : (<IssueForm />)} 
                     </Grid>
                 </Grid>
             </Grid>
