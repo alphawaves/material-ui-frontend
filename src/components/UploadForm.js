@@ -10,6 +10,7 @@ import { TextField } from '@material-ui/core';
 import { Upload, Publish} from 'mdi-material-ui'
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Input } from '@material-ui/core'
 import UploadDialog from './UploadDialog'
+import DropzoneArea from './DropzoneArea'
 
 const styles = theme => ({
   main: {
@@ -43,8 +44,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
   },
-  submit: {
-    //marginTop: theme.spacing.unit * 3,
+  receiverAddressTextfield: {
+    marginTop:0,
+    marginBottom: theme.spacing.unit * 3,
   },
 });
 
@@ -77,6 +79,14 @@ class UploadForm extends React.Component {
       e.preventDefault()
       this.setState({ dialogOpen: true })
   }
+
+  onFileDrop = selectedFile => {
+    this.setState({ 
+      data: {
+        selectedFile
+      }
+    })
+  }
   
   render() {
    const { classes } = this.props;
@@ -84,19 +94,17 @@ class UploadForm extends React.Component {
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
         <Typography component="h1" variant="h5">
           Upload Document
         </Typography>
         <form className={classes.form}>
-          <input
+          {/* <input
             accept="application/pdf" 
             className={classes.margin} 
             id="raised-button-file" 
             type="file" 
-          /> 
+          />  */}
+          <DropzoneArea onFileDrop={this.onFileDrop}/>
           <TextField
             id="title"
             label="Document Title:"
@@ -139,7 +147,7 @@ class UploadForm extends React.Component {
             id="receiverAddress"
             label="Receiver's Address"
             name="receiverAddress"
-            className={classes.textField}
+            className={classes.receiverAddressTextfield}
             value={this.state.receiverAddress}
             onChange={this.handleChange}
             margin="normal"
