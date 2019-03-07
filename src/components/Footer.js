@@ -1,18 +1,32 @@
 import { withStyles } from "@material-ui/core";
 import React from 'react'
-import { Copyright } from 'mdi-material-ui'
 
 const styles = theme => ({
     footer: {
-        position: 'absolute',
-        bottom:0,
+        position: 'fixed',
+        left: 0,
+        textAlign:'center',
+        width: '100%',
+        bottom: 0,
         display: 'flex',
         justifyContent: 'center',
-
     },
-    contactUs: {
-        marginLeft: theme.spacing.unit * 3,
+    contactus: {
+        marginLeft: theme.spacing.unit * 1,
         color: theme.palette.primary.main
+    },
+    link: {
+        color: '#000000',
+        textDecoration: 'underline',
+        '&:visited': {
+            color: '#000000',
+        },
+        '&:active': {
+            color: '#000000',
+        },
+        '&:hover': {
+            color: '#000000',
+        },
     }
 })
 
@@ -22,10 +36,10 @@ class Footer extends React.Component {
         return (
             <footer className={classes.footer}>
                 <div class="copyright">
-                    <p><Copyright /> 2019 - Certchain</p>
+                    <p>© 2019 - Certchain</p>
                 </div>
-                <div class="contactus" class="social">
-                    <a href="#">Contact Us</a>
+                <div className={classes.contactus}>
+                    <a href="" className={classes.link}>Contact Us</a>
                     {/* <a href="#" class="face">f</a>
                     <a href="#" class="tweet">t</a>
                     <a href="#" class="linked">in</a> */}

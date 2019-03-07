@@ -10,6 +10,8 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import CertchainLogo from './CertchainLogo'
+import Link from '@material-ui/core/Link'
 
 const styles = theme => ({
   root: {
@@ -27,6 +29,8 @@ const styles = theme => ({
   },
   title: {
     display: 'none',
+    margin: 0,
+    textTransform: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -75,6 +79,16 @@ const styles = theme => ({
   },
   button: {
     marginLeft: theme.spacing.unit * 4,
+  },
+  certchainlogo: {
+    transform: 'scale(1.3)',
+    marginRight: theme.spacing.unit * 1.5
+  },
+  certchainlink: {
+    '&:hover': {
+     textDecoration: 'none',
+     color: '#fffff'
+    },
   }
 });
 
@@ -105,12 +119,15 @@ class NavBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h4" color="inherit" noWrap>
-              Certchain
-            </Typography>
+    </IconButton> */}
+            <Button onClick={() => {this.props.history.push('')}} color="inherit">
+              <CertchainLogo className={classes.certchainlogo} fontSize="large" />
+              <Typography className={classes.title} variant="h5" color="inherit" noWrap>
+                Certchain
+              </Typography>
+            </Button>
             <Button className={classes.button} color="inherit" onClick={() => {this.props.history.push('/login')}}>Login</Button>
             <Button className={classes.button} color="inherit" onClick={() => {this.props.history.push('/register')}}>Register</Button>
             <Button className={classes.button} color="inherit" onClick={() => {this.props.history.push('/dashboard')}}>Dashboard</Button>

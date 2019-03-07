@@ -81,10 +81,17 @@ class DropzoneArea extends React.Component {
       if(e !== undefined ) { e.preventDefault() }
       this.props.onFileDrop(null)
     }
+
+    clearDropzone = () => {
+      this.setState({
+        files: [],
+        errorMessage:''
+      })
+    }
   
     render() {
       const { classes } = this.props
-      const files = this.state.files.map(file => (
+      const files = this.props.clear==="true"?[]:this.state.files.map(file => (
         <p key={file.name} style={fileDetails}>
           <Check />
           <p>{file.name} - {file.size} bytes
@@ -98,7 +105,7 @@ class DropzoneArea extends React.Component {
       return (
         <section>
           <Dropzone
-            accept="application/pdf"
+            //accept="application/pdf"
             onDrop={this.onDrop}
             onFileDialogCancel={this.onCancel}
           >
@@ -107,7 +114,7 @@ class DropzoneArea extends React.Component {
               ({getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject}) => {
                 let styles = {...baseStyle}
                 styles = isDragActive ? {...styles, ...activeStyle} : styles
-                styles = this.state.errorMessage ? {...styles, ...rejectStyle} : styles
+                styles = this.props.clear==="true" ? styles :this.state.errorMessage ? {...styles, ...rejectStyle} : styles
                 return(
                   <div {...getRootProps()} style={styles}>
                   <input {...getInputProps()} />

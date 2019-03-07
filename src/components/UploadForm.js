@@ -104,7 +104,7 @@ class UploadForm extends React.Component {
             id="raised-button-file" 
             type="file" 
           />  */}
-          <DropzoneArea onFileDrop={this.onFileDrop}/>
+          <DropzoneArea onFileDrop={this.onFileDrop} clear="false" />
           <TextField
             id="title"
             label="Document Title:"

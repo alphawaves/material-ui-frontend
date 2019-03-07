@@ -8,9 +8,11 @@ import Dashboard from './components/Dashboard'
 import UploadForm from './components/UploadForm'
 import DetailedDocumentMaterial from './components/DetailedDocumentMaterial'
 import Footer from './components/Footer'
+import HomeScreen from './components/HomeScreen'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
+import { Ip } from 'mdi-material-ui';
 
 class App extends Component {
   render() {
@@ -22,8 +24,9 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <Router>
-          <React.Fragment>
+          <div className="Site">
           <Route path="/" component={NavBar} />
+          <Route exact path="/" component={HomeScreen} />
             <Switch>
               <Route path="/login" component={LoginForm} />
               <Route path="/register" component={RegisterForm} />
@@ -33,7 +36,7 @@ class App extends Component {
               <Route path="/upload" component={UploadForm} />
             </Switch>
             <Route path="/" component={Footer} />
-          </React.Fragment>
+          </div>
         </Router>
       </MuiThemeProvider>
     );

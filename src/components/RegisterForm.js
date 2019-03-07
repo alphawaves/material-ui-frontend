@@ -7,7 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { AccountPlusOutline } from 'mdi-material-ui'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -80,7 +80,7 @@ class RegisterForm extends React.Component {
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AccountPlusOutline />
         </Avatar>
         <Typography component="h1" variant="h5">
           Register
