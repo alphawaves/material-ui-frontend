@@ -6,24 +6,18 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
-    root: {
-        //width: '50%',
-        //margin: 'auto'
-        height: '80vh'
-    },
     logo: {
         marginTop:theme.spacing.unit * 5,
         borderRadius: '50%',
         padding: 75,
         backgroundColor: theme.palette.primary.main,
     },
-    logocontainer: {
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'center'
-    },
     svgicon: {
         transform: 'scale(3.0)',
+    },
+    info: {
+        marginTop:theme.spacing.unit * 8,
+        marginBottom:theme.spacing.unit * 8, 
     },
     button: {
         marginLeft: theme.spacing.unit * 4,
@@ -34,15 +28,14 @@ class HomeScreen extends React.Component {
     render() {
         const { classes } = this.props
         return(
-                <Grid className={classes.root} container direction="column" alignItems="center" justify="space-around">
-                    <Grid item xs={4}>
-                        <div >
-                            <Avatar className={classes.logo}>
+                <React.Fragment>
+                    <Grid container className={classes.setheight} alignContent="center" justify="center">
+                    <Avatar className={classes.logo}>
                             <CertchainLogo  className={classes.svgicon} />
                             </Avatar>
-                        </div>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid container className={classes.setheight} alignContent="center" justify="center">
+                        <Grid item className={classes.content} xs={6}>
                         <div className={classes.info}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -52,23 +45,24 @@ class HomeScreen extends React.Component {
                         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                         anim id est laborum.
                         </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={2}>
-                        <Button
-                            color="primary"
-                            variant="contained"
-                            onClick={() => {this.props.history.push('/login')}}>
-                            Login
-                        </Button>
-                        <Button
-                            className={classes.button}
-                            color="primary"
-                            variant="contained"
-                            onClick={() => {this.props.history.push('/register')}}>
+                    <Grid container className={classes.setheight} alignContent="center" justify="center">
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => {this.props.history.push('/login')}}>
+                        Login
+                    </Button>
+                    <Button
+                        className={classes.button}
+                        color="primary"
+                        variant="contained"
+                        onClick={() => {this.props.history.push('/register')}}>
                         Register
-                        </Button>
-                    </Grid>
-                    </Grid>
+                    </Button>
+                </Grid>
+                </React.Fragment>
         )
     }
 }
