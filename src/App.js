@@ -11,14 +11,26 @@ import Footer from './components/Footer'
 import HomeScreen from './components/HomeScreen'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import lime from '@material-ui/core/colors/lime';
+import green from '@material-ui/core/colors/green';
 import { Ip } from 'mdi-material-ui';
 
-class App extends Component {
+class App extends Component{
   render() {
+    const color = green;
+    const secColor = lime;
     const theme = createMuiTheme({
       palette: {
-        primary: red
+        primary: {
+          main: color[600],
+          light: color[300],
+          dark: color[900]
+        },
+        secondary: {
+          main: secColor[500],
+          light: secColor[300],
+          dark: secColor[800]
+        }
       }
     });
     return (

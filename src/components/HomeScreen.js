@@ -1,19 +1,21 @@
 import React from 'react'
 import CertchainLogo from './CertchainLogo'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, withTheme } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
-    logo: {
-        marginTop:theme.spacing.unit * 5,
-        borderRadius: '50%',
-        padding: 75,
-        backgroundColor: theme.palette.primary.main,
+    title: {
+        paddingLeft: theme.spacing.unit * 4
     },
     svgicon: {
-        transform: 'scale(3.0)',
+        transform: 'scale(9.0)',
+        transformOrigin: 'center center',
+        [theme.breakpoints.down(900 + theme.spacing.unit * 3 * 2)]: {
+            display: 'none'
+        },
     },
     info: {
         marginTop:theme.spacing.unit * 8,
@@ -22,50 +24,79 @@ const styles = theme => ({
     button: {
         marginLeft: theme.spacing.unit * 4,
     },
+    border: {
+        border: '1px solid black'
+    },
+    jumbotron: {
+        marginTop: theme.spacing.unit * 20,
+        flexDirection: 'column',
+        alignItems: 'center',
+        [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+            flexDirection: 'row',
+            alignItems: 'none'      
+        },
+    }
 })
 
 class HomeScreen extends React.Component {
     render() {
-        const { classes } = this.props
+        const { classes, theme } = this.props
         return(
                 <React.Fragment>
-                    <Grid container className={classes.setheight} alignContent="center" justify="center">
-                    <Avatar className={classes.logo}>
-                            <CertchainLogo  className={classes.svgicon} />
-                            </Avatar>
+                
+                <Grid container justify="center" className={classes.jumbotron}>
+                    <Grid container justify="center" alignContent="center" className={classes.logo} item xs={2}>
+                        <CertchainLogo
+                        color1={theme.palette.primary.light}
+                        color2={theme.palette.primary.main}
+                        className={classes.svgicon} />
                     </Grid>
-                    <Grid container className={classes.setheight} alignContent="center" justify="center">
-                        <Grid item className={classes.content} xs={6}>
-                        <div className={classes.info}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                        </div>
+                    <Grid container className={classes.title} direction="column" item xs={4}>
+                        <Grid item xs={7}>
+                            <Typography color="secondary" variant="h1"> Certchain </Typography>
                         </Grid>
-                    </Grid>
-                    <Grid container className={classes.setheight} alignContent="center" justify="center">
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={() => {this.props.history.push('/login')}}>
-                        Login
-                    </Button>
-                    <Button
-                        className={classes.button}
-                        color="primary"
-                        variant="contained"
-                        onClick={() => {this.props.history.push('/register')}}>
-                        Register
-                    </Button>
+                        <Grid item>
+                            <Typography variant="h5" color="primary">
+                                Certificate management made dead simple.
+                            </Typography>
+                        </Grid>
+                    </Grid>    
                 </Grid>
+                   
+
+                
+
+
+                {/* features */}
+                {/* <Grid container justify="center">
+                    Features Icon
+                </Grid>
+                <Grid container justify="center">
+                    <Typography variant="h3">Features</Typography>
+                </Grid> */}
                 </React.Fragment>
         )
     }
 }
 
-export default withStyles(styles)(HomeScreen)
+export default withTheme()(withStyles(styles)(HomeScreen))
+
+{/* <Grid container className={classes.jumbotron}>
+<Grid className={classes.border} justify="center" container item xs={5} spacing={16}>
+        <Grid item xs={9}></Grid>
+        <CertchainLogo
+        color1={theme.palette.primary.light}
+        color2={theme.palette.primary.main}
+        className={classes.svgicon} />
+</Grid>
+<Grid container direction="column" className={classes.border} item xs={7} spacing={16}>
+    <Grid item xs={7}>
+        <Typography color="secondary" variant="h1"> Certchain </Typography>
+    </Grid>
+    <Grid item>
+        <Typography variant="h5" color="primary">
+            Certificate management made dead simple.
+        </Typography>
+    </Grid>
+</Grid> */}
 
